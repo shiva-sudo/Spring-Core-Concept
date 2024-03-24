@@ -4,47 +4,66 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--<bean id ="student" class="org.example.Student" scope="prototype">
+
         Prototype  will create object  depends on the reference.
         By Default scope is Singleton
     -->
-    <bean id ="student" class="org.example.Student"  autowire="byType">
 
-        <!--
+
+    <!--<bean id ="student" class="org.example.Student"  autowire="byType">
+
+        &lt;!&ndash;
         Ques: How it will set the vale
         Ans.: First it will create the object then call to setter method and set the value
-        -->
+        &ndash;&gt;
 
-        <!--*********** Getter Setter Injection******************-->
+        &lt;!&ndash;*********** Getter Setter Injection******************&ndash;&gt;
 
-       <!-- <property name="age" value="21"> </property>
+        &lt;!&ndash; <property name="age" value="21"> </property>
         &lt;!&ndash;Here we use ref for reference type dependency injection&ndash;&gt;
         <property name="lap" ref="lap1"> </property>
-        -->
+        &ndash;&gt;
 
-        <!--*******Constructor Injection****************-->
+        &lt;!&ndash;*******Constructor Injection****************&ndash;&gt;
 
-        <!--<constructor-arg value ="21"/>
-        <constructor-arg ref = "lap1"/>-->
+        &lt;!&ndash;<constructor-arg value ="21"/>
+        <constructor-arg ref = "lap1"/>&ndash;&gt;
 
-        <!--in this  Scenario we will get error if we have multiple parameter with the same data type
-            to overcome this we will use indexing   -->
+        &lt;!&ndash;in this  Scenario we will get error if we have multiple parameter with the same data type
+            to overcome this we will use indexing   &ndash;&gt;
 
-      <!-- <constructor-arg index ="0" value ="21"/>
+        &lt;!&ndash; <constructor-arg index ="0" value ="21"/>
         <constructor-arg index ="1" value ="500000"/>
-        <constructor-arg ref = "lap1"/>-->
+        <constructor-arg ref = "lap1"/>&ndash;&gt;
 
         <property name="age" value="21"/>
 
-        <!--Auto wire will take care for this property-->
-<!--
-        <property name="com" ref="com"/>
--->
-    </bean>
-    <bean id ="com" class="org.example.Laptop" primary="true" > </bean>
-    <!--Here lazy-init will decide when object get created ,
-        when ever required then object will get created
-     -->
-    <bean id ="com1" class="org.example.Desktop" lazy-init="true"> </bean>
+        &lt;!&ndash;Auto wire will take care for this property&ndash;&gt;
+        &lt;!&ndash;
+                <property name="com" ref="com"/>
+        &ndash;&gt;
+        &lt;!&ndash;********************Lazy Bean concept************&ndash;&gt;
+        </bean>
+        <bean id ="com" class="org.example.Laptop" primary="true" > </bean>
+
+        &lt;!&ndash;
+           Here lazy-init will decide when object get created ,
+           when ever required then object will get created
+         &ndash;&gt;
+        <bean id ="com1" class="org.example.Desktop" lazy-init="true"> </bean>-->
+
+
+        <!--*******inner Bean Concept**********-->
+        <!--
+            inner Bean define the bean scope for a particular bean
+            in the  below statement the object can be used only for Student bean
+        -->
+        <bean id ="student" class="org.example.Student"  autowire="byType">
+        <property name="com">
+            <bean id ="com" class="org.example.Laptop" primary="true" > </bean>
+        </property>
+
+        </bean>
 
 
 </beans>
