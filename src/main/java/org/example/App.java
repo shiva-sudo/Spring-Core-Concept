@@ -12,6 +12,10 @@ public class App {
         ApplicationContext context = new AnnotationConfigApplicationContext(Appconfig.class);
         Desktop dt = context.getBean(Desktop.class);
         dt.compile();
+        Student stud = context.getBean("student",Student.class);
+        stud.setAge(21);
+        System.out.println("Student ages is  : "+stud.getAge());
+        stud.code();
 
 
         /*****************XML Based Configuration code*******************/

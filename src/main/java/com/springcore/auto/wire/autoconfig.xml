@@ -1,0 +1,28 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.springcore.auto.wire.Address" name="address">
+        <property name="street" value="church street"/>
+        <property name="city" value="Bangalore"/>
+    </bean>
+    <bean class="com.springcore.auto.wire.Address" name="address1">
+        <property name="street" value="Parantha wali galli "/>
+        <property name="city" value="Delhi"/>
+    </bean>
+
+<!--Auto wiring by  byName
+    This will look name of the reference object in the bean with the same name
+-->
+    <bean class="com.springcore.auto.wire.Employee" name="employe" autowire="byName"/>
+
+    <!--Auto wiring by byType
+        this will look the type of reference Object in the Bean with same type
+    -->
+    <bean class="com.springcore.auto.wire.Employee" name="employe" autowire="byType"/>
+
+    <!-- Auto wiring by Constructor-->
+    <bean class="com.springcore.auto.wire.Employee" name="employe" autowire="constructor"/>
+
+</beans>
